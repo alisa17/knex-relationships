@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>EDA Phase 1 Express Boilerplate</title>
-  </head>
-  <body>
-    <ul>
+
+<head>
+  <title>EDA Phase 1 Express Boilerplate</title>
+</head>
+
+<body>
+  <h1>Users</h1>
+  <ul>
     {{#each users}}
-      <li>{{name}} ({{email}})</li>
+      <li><a href="{{url}}">{{name}}</a> --- Email: <a href="mailto:{{email}}">{{email}}</a></li>
     {{/each}}
-    </ul>
-  </body>
+  </ul>
+</body>
+
 </html>
