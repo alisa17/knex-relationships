@@ -36,3 +36,21 @@ test('POST /addUser', (t) => {
          t.pass()
     })
 })
+
+
+test('POST /addBlog/:id', (t) => {
+  let id = 99926
+  return request(t.context.app)
+    .post('/addBlog/user/99926')
+    .send({
+      title: 'bob blog',
+      content: 'bob'
+    })
+    .expect(302)
+    .then((res) => {
+         let actual = res.text
+         let expected = `Found. Redirecting to /profile/${id}`
+         t.is(actual,expected, "Message")
+         t.pass()
+    })
+})

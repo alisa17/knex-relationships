@@ -48,3 +48,14 @@ test('addProfile adds a single profile', function (t) {
       t.is(profiles.length, 27)
     })
 })
+
+
+test('addBlog adds a blog', function (t) {
+  return db.addBlog('bob blog', 'bob', t.context.connection)
+    .then((res) => {
+      return t.context.connection('posts').select()
+    })
+    .then((posts) => {
+      t.is(posts.length, 2)
+    })
+})
