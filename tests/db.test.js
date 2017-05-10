@@ -9,27 +9,27 @@ configureDatabase(test)
 
 var db = require('../db')
 
-test('getUsers gets all users', function (t) {
+test('getUsers gets all users', function(t) {
   // One for each letter of the alphabet!
   var expected = 26
   return db.getUsers(t.context.connection)
-    .then(function (result) {
+    .then(function(result) {
       var actual = result.length
       t.is(expected, actual)
     })
 })
 
-test('getUsers gets a single user', function (t) {
+test('getUsers gets a single user', function(t) {
   var expected = 'Ambitious Aardvark'
   return db.getUser(99901, t.context.connection)
-    .then(function (result) {
+    .then(function(result) {
       var actual = result.name
       t.is(expected, actual)
     })
 })
 
-test('addUser adds a single user', function (t) {
-  return db.addUser('bob','bob', t.context.connection)
+test('addUser adds a single user', function(t) {
+  return db.addUser('bob', 'bob', t.context.connection)
     .then((res) => {
       return t.context.connection('users').select()
     })
@@ -39,7 +39,7 @@ test('addUser adds a single user', function (t) {
 })
 
 
-test('addProfile adds a single profile', function (t) {
+test('addProfile adds a single profile', function(t) {
   return db.addProfile(999999, t.context.connection)
     .then((res) => {
       return t.context.connection('profiles').select()
@@ -50,12 +50,20 @@ test('addProfile adds a single profile', function (t) {
 })
 
 
-test('addBlog adds a blog', function (t) {
+test('addBlog adds a blog', function(t) {
   return db.addBlog('bob blog', 'bob', 99922, t.context.connection)
     .then((res) => {
       return t.context.connection('posts').select()
     })
     .then((posts) => {
       t.is(posts.length, 2)
+    })
+})
+
+
+test('getBlogs gets blogs for given user', function(t) {
+  return db.getBlogs(99901, t.context.connection)
+    .then(function(result) {
+      t.is(result.length, 1)
     })
 })

@@ -3,7 +3,8 @@ module.exports = {
   getUsers,
   addUser,
   addProfile,
-  addBlog
+  addBlog,
+  getBlogs
 }
 
 function getUsers(connection) {
@@ -42,4 +43,9 @@ function addBlog(title, content, user_id, connection) {
       content: content,
       user_id: user_id
     })
+}
+
+function getBlogs(user_id, connection) {
+  return connection('posts')
+    .where(user_id, user_id)
 }
