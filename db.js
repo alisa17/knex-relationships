@@ -15,6 +15,7 @@ function getUser(id, connection) {
   return connection('users')
     .where('users.id', id)
     .join('profiles', 'user_id', '=', 'users.id')
+    .join('posts', 'user_id', '=', 'users.id')
     .first()
 }
 

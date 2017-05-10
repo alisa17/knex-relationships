@@ -54,3 +54,16 @@ test('POST /addBlog/user/:id', (t) => {
          t.pass()
     })
 })
+
+test('GET /profile/:id', (t) => {
+  return request(t.context.app)
+    .get('/profile/99901')
+    .expect(200)
+    .then((res) => {
+      return new Promise((resolve, reject) => {
+        t.true(res.text.match('bobby') != null)
+        resolve()
+      })
+
+    })
+})
