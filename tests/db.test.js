@@ -51,7 +51,7 @@ test('addProfile adds a single profile', function (t) {
 
 
 test('addBlog adds a blog', function (t) {
-  return db.addBlog('bob blog', 'bob', t.context.connection)
+  return db.addBlog('bob blog', 'bob', 99922, t.context.connection)
     .then((res) => {
       return t.context.connection('posts').select()
     })

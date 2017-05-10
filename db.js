@@ -2,7 +2,8 @@ module.exports = {
   getUser,
   getUsers,
   addUser,
-  addProfile
+  addProfile,
+  addBlog
 }
 
 function getUsers(connection) {
@@ -31,5 +32,14 @@ function addProfile(user_id, connection) {
       user_id: user_id,
       profile_picture: `user${user_id}.png`,
       url: `/profile/${user_id}`
+    })
+}
+
+function addBlog(title, content, user_id, connection) {
+  return connection('posts')
+    .insert({
+      title: title,
+      content: content,
+      user_id: user_id
     })
 }

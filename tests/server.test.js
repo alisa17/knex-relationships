@@ -38,7 +38,7 @@ test('POST /addUser', (t) => {
 })
 
 
-test('POST /addBlog/:id', (t) => {
+test('POST /addBlog/user/:id', (t) => {
   let id = 99926
   return request(t.context.app)
     .post('/addBlog/user/99926')

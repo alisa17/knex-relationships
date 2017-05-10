@@ -40,5 +40,19 @@ router.post('/addUser', function(req, res) {
 
 })
 
+router.get('/addBlog/user/:id', function(req, res) {
+  console.log(req.params.id);
+  let user = {id: req.params.id}
+  res.render('addBlog', user)
+})
+
+router.post('/addBlog/user/:id', function(req, res) {
+  db.addBlog(req.body.title, req.body.content, req.params.id, req.app.get('connection'))
+    .then(() => res.redirect(`/profile/${req.params.id}`))
+    .catch(function(err) {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
 
 module.exports = router
