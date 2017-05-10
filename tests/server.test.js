@@ -12,8 +12,10 @@ test('GET /', (t) => {
     .get('/')
     .expect(200)
     .then((res) => {
-      const $ = cheerio.load(res.text)
-      t.is($('li').first().text(), 'Ambitious Aardvark (aardvark@example.org)')
-    })
+      return new Promise((resolve, reject) => {
+        t.true(res.text.match('Aardvark') != null)
+        resolve()
+      })
 
+    })
 })

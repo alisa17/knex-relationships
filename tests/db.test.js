@@ -23,7 +23,7 @@ test('getUsers gets a single user', function (t) {
   var expected = 'Ambitious Aardvark'
   return db.getUser(99901, t.context.connection)
     .then(function (result) {
-      var actual = result[0].name
+      var actual = result.name
       t.is(expected, actual)
     })
 })
