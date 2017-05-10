@@ -12,6 +12,14 @@
       <li><a href="{{url}}">{{name}}</a> --- Email: <a href="mailto:{{email}}">{{email}}</a></li>
     {{/each}}
   </ul>
+  <h2>Add new user</h2>
+  <form action="/addUser" method="post">
+    Name:<br>
+    <input type="text" name="name"><br>
+    Email:<br>
+    <input type="text" name="email"><br><br>
+    <input type="submit" value="Submit">
+  </form>
 </body>
 
 </html>
