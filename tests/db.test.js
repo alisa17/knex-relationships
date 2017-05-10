@@ -27,3 +27,24 @@ test('getUsers gets a single user', function (t) {
       t.is(expected, actual)
     })
 })
+
+test('addUser adds a single user', function (t) {
+  return db.addUser('bob','bob', t.context.connection)
+    .then((res) => {
+      return t.context.connection('users').select()
+    })
+    .then((users) => {
+      t.is(users.length, 27)
+    })
+})
+
+
+test('addProfile adds a single profile', function (t) {
+  return db.addProfile(999999, t.context.connection)
+    .then((res) => {
+      return t.context.connection('profiles').select()
+    })
+    .then((profiles) => {
+      t.is(profiles.length, 27)
+    })
+})
